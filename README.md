@@ -2,7 +2,7 @@
 The correct way to extend Django User Model and use email and password to login
 
 
-Most people cusotmizing or extending the Django user model in the oposit way,
+Most people customizing or extending the Django user model in the opposit way,
 I would like to share my experience how to do it the correct way without writing so much code.
 
 # model.py
