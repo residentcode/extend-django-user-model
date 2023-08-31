@@ -12,7 +12,7 @@ I would like to share my experience how to do it the correct way without writing
 4- Set **REQUIRED_FIELDS** to empty array.<br>
 5- Set **EMAIL_FIELD** = "username"<br>
 
-<pre>
+```py
 	from django.contrib.auth.models import AbstractUser
 	from django.core.mail import EmailMessage
 	from django.db import models
@@ -40,14 +40,14 @@ I would like to share my experience how to do it the correct way without writing
 	
 	def __str__(self):
 		return self.username
-</pre>
+```
 
 In your **app**.admin.py in my case my app name is **users**
 
 #H1 admin.py
 We need to inherit **UserAdmin** class and finally register both **User** and **UserAdmin**
 
-<pre>
+```py
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy
@@ -77,7 +77,7 @@ class UsersAdmin(UserAdmin):
 
 
 admin.site.register(User, UsersAdmin)
-</pre>
+```py
 
 
 ![](https://github.com/residentcode/extend-django-user-model/blob/main/create-superuser.png)
