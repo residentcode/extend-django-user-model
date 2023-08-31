@@ -6,11 +6,11 @@ Most people cusotmizing or extending the Django user model in the oposit way,
 I would like to share my experience how to do it the correct way without writing so much code.
 
 # model.py
-1- Here we extend **User** model by inherit **AbstractUser** class
-2- Convert username field from models.**CharField** to **EmailField** and set  **unique=True**
-3- Set **email** field to **None**
-4- Set **REQUIRED_FIELDS** to empty array.
-5- Set **EMAIL_FIELD** = "username"
+1- Here we extend **User** model by inherit **AbstractUser** class<br>
+2- Convert username field from models.**CharField** to **EmailField** and set  **unique=True**<br>
+3- Set **email** field to **None**<br>
+4- Set **REQUIRED_FIELDS** to empty array.<br>
+5- Set **EMAIL_FIELD** = "username"<br>
 
 <pre>
 	from django.contrib.auth.models import AbstractUser
@@ -20,26 +20,26 @@ I would like to share my experience how to do it the correct way without writing
 	
 	
 	class User(AbstractUser):
-    username = models.EmailField(_('email'), max_length=255, unique=True)
-    is_verified = models.BooleanField(default=False)
-    is_banned = models.BooleanField(default=False)
-    email = models.CharField(max_length=100, default=None)
+	username = models.EmailField(_('email'), max_length=255, unique=True)
+	is_verified = models.BooleanField(default=False)
+	is_banned = models.BooleanField(default=False)
+	email = models.CharField(max_length=100, default=None)
 
-    REQUIRED_FIELDS = []
-    USERNAME_FIELD = "username"
-    EMAIL_FIELD = "username"
-
-    class Meta:
-        verbose_name = _("user")
-        verbose_name_plural = _("users")
-
-    def email_user(self, subject, message, from_email=None, **kwargs) -> int:
-        """ Email this user."""
-        msg = EmailMessage(subject, message, from_email, [self.username], **kwargs)
-        return msg.send()
-
-    def __str__(self):
-        return self.username
+	REQUIRED_FIELDS = []
+	USERNAME_FIELD = "username"
+	EMAIL_FIELD = "username"
+	
+	class Meta:
+		verbose_name = _("user")
+		verbose_name_plural = _("users")
+	
+	def email_user(self, subject, message, from_email=None, **kwargs) -> int:
+		""" Email this user."""
+		msg = EmailMessage(subject, message, from_email, [self.username], **kwargs)
+	return msg.send()
+	
+	def __str__(self):
+		return self.username
 </pre>
 
 In your **app**.admin.py in my case my app name is **users**
