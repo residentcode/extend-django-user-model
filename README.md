@@ -41,6 +41,11 @@ I would like to share my experience how to do it the correct way without writing
 	def __str__(self):
 		return self.username
 ```
+# settings.py
+Set AUTH_USER_MODEL = 'users.User' replace users with your app name.
+```py
+AUTH_USER_MODEL = 'users.User'
+```
 
 In your **app**.admin.py in my case my app name is **users**
 
@@ -79,5 +84,20 @@ class UsersAdmin(UserAdmin):
 admin.site.register(User, UsersAdmin)
 ```
 
+From now on we are using Django built-in User model,<br>
+We have added our extra fields and we can login/register by using email and password.<br>
+We don't need to create custom UserManger().<br>
+You can user reset-password built-in form in Django admin.<br>
+We still need to use username field,<br>
+Exp: 
+```py
+user = User.objects.filter(username='admin@admin.com').first()
+user = User.objects.create_user(username='admin@admin.com', password='password')
+```
+
 
 ![](https://github.com/residentcode/extend-django-user-model/blob/main/create-superuser.png)
+![](https://github.com/residentcode/extend-django-user-model/blob/main/user_admin.png)
+
+All done. <br>
+I hope you enjoy coding.
