@@ -77,7 +77,7 @@ class UsersAdmin(UserAdmin):
 
 
 admin.site.register(User, UsersAdmin)
-```py
+```
 
 
 ![](https://github.com/residentcode/extend-django-user-model/blob/main/create-superuser.png)
